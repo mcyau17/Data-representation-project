@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import Books from "./books";
+import CharacterSheet from "./CharacterSheet";
 
-function Read() {
+function ViewCharacters() {
    
     const [data, setData] = useState([]);
 
   useEffect(
     ()=>{
         
-        axios.get('http://localhost:4000/api/books')
+        axios.get('http://localhost:4000/api/charsheet')
         .then(
             (response)=>{
                 setData(response.data)
@@ -25,7 +25,7 @@ function Read() {
   );
 
   const Reload = (e)=>{
-    axios.get('http://localhost:4000/api/books')
+    axios.get('http://localhost:4000/api/charsheet')
         .then(
             (response)=>{
                 setData(response.data)
@@ -40,11 +40,11 @@ function Read() {
 
     return (
         <div>
-            <h2>Hello from Read Component!</h2>
-            <Books myBooks={data} ReloadData={Reload}></Books>
+            <h2>These are your characters</h2>
+            <CharacterSheet myCharacterSheets={data} ReloadData={Reload}></CharacterSheet>
         </div>
     );
 
 }
 
-export default Read;
+export default ViewCharacters;
